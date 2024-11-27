@@ -1,12 +1,12 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
-    selector     : '',
+    selector     : 'caracterization',
     standalone   : true,
-    templateUrl  : './.component.html',
+    templateUrl  : './caracterization.component.html',
     encapsulation: ViewEncapsulation.None,
 })
-export class Component
+export class CaracterizationComponent
 {
     /**
      * Constructor
