@@ -35,6 +35,7 @@ import { Subject, takeUntil } from 'rxjs';
         MatIconModule,
     ],
 })
+
 export class FuseVerticalNavigationBasicItemComponent
     implements OnInit, OnDestroy
 {

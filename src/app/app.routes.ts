@@ -91,6 +91,55 @@ export const appRoutes: Route[] = [
             {path: 'caracterization', loadChildren: () => import('app/modules/caracterization/caracterization.routes')},
         ]
     },
+    // Catalog  routes
+    {
+        path: '',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: initialDataResolver
+        },
+        children: [
+            {path: 'catalog', loadChildren: () => import('app/modules/catalog/catalog.routes')},
+        ]
+    },
+    {
+        path: '',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: initialDataResolver
+        },
+        children: [
+            {path: 'assessment', loadChildren: () => import('app/modules/assessment/assessment.routes')},
+        ]
+    },
+    {
+        path: '',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: initialDataResolver
+        },
+        children: [
+            {path: 'follow', loadChildren: () => import('app/modules/follow/follow.routes')},
+        ]
+    },
+    {
+        path: '',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+        resolve: {
+            initialData: initialDataResolver
+        },
+        children: [
+            {path: 'publication', loadChildren: () => import('app/modules/publication/publication.routes')},
+        ]
+    },
 
         // Resumen common routes
     {
