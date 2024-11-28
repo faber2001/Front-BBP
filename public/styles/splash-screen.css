@@ -8,7 +8,7 @@ body fuse-splash-screen {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #111827;
+    background-color: #FFFF;
     color: #F9FAFB;
     z-index: 999999;
     pointer-events: none;
@@ -43,11 +43,17 @@ body fuse-splash-screen .spinner > div {
 body fuse-splash-screen .spinner .bounce1 {
     -webkit-animation-delay: -0.32s;
     animation-delay: -0.32s;
+    background-color: #F0BA41; /* Color personalizado */
 }
 
 body fuse-splash-screen .spinner .bounce2 {
     -webkit-animation-delay: -0.16s;
     animation-delay: -0.16s;
+    background-color: #2D3480; /* Color personalizado */
+}
+
+body fuse-splash-screen .spinner .bounce3 {
+    background-color: #D63421; /* Color personalizado */
 }
 
 @-webkit-keyframes fuse-bouncedelay {
