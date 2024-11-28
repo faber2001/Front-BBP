@@ -15,6 +15,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @Component({
     selector: 'resumen',
@@ -34,7 +36,10 @@ import { MatStepperModule } from '@angular/material/stepper';
         MatButtonModule,
         MatCheckboxModule,
         MatRadioModule,
+        MatDatepickerModule,
+        MatNativeDateModule
     ],
+    providers: [MatDatepickerModule],
 })
 export class ResumenComponent implements OnInit {
     horizontalStepperForm: UntypedFormGroup;
@@ -44,7 +49,7 @@ export class ResumenComponent implements OnInit {
     ngOnInit(): void {
         this.horizontalStepperForm = this._formBuilder.group({
             step1: this._formBuilder.group({
-                email: ['', [Validators.required, Validators.email]],
+                fecha: ['', Validators.required],
                 country: ['', Validators.required],
                 language: ['', Validators.required],
             }),
