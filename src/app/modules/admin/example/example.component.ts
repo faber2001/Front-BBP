@@ -3,10 +3,10 @@ import { Component, ViewEncapsulation } from '@angular/core';
 @Component({
     selector     : '',
     standalone   : true,
-    templateUrl  : './.component.html',
+    templateUrl  : './example.component.html',
     encapsulation: ViewEncapsulation.None,
 })
-export class Component
+export class ExampleComponent
 {
     /**
      * Constructor
