@@ -39,6 +39,7 @@ import { Subject, debounceTime, filter, map, takeUntil } from 'rxjs';
 @Component({
     selector: 'search',
     templateUrl: './search.component.html',
+    styleUrl : './search.component.scss',
     encapsulation: ViewEncapsulation.None,
     exportAs: 'fuseSearch',
     animations: fuseAnimations,

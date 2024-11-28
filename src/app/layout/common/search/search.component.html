@@ -1,12 +1,5 @@
 <!-- Bar search -->
 @if (appearance === 'bar') {
-    @if (!opened) {
-        <button mat-icon-button (click)="open()">
-            <mat-icon
-                [svgIcon]="'heroicons_outline:magnifying-glass'"
-            ></mat-icon>
-        </button>
-    }
     @if (opened) {
         <div
             class="bg-card absolute inset-0 z-99 flex shrink-0 items-center"

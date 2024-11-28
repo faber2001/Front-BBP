@@ -23,6 +23,7 @@ import { Subject, takeUntil } from 'rxjs';
 @Component({
     selector: 'classic-layout',
     templateUrl: './classic.component.html',
+
     encapsulation: ViewEncapsulation.None,
     standalone: true,
     imports: [

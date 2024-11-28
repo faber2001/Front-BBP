@@ -4,17 +4,45 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 export const defaultNavigation: FuseNavigationItem[] = [
     {
         id   : 'example',
-        title: 'Example',
+        title: 'Panel',
         type : 'basic',
         icon : 'heroicons_outline:chart-pie',
         link : '/example'
     },
     {
         id   : 'caracterization',
-        title: 'Caracterization',
+        title: 'Caracterización',
         type : 'basic',
         icon : 'heroicons_outline:chart-pie',
         link : '/caracterization'
+    },
+    {
+        id   : 'catalog',
+        title: 'Catalogar',
+        type : 'basic',
+        icon : 'heroicons_outline:chart-pie',
+        link : '/catalog'
+    },
+    {
+        id   : 'assessment',
+        title: 'Evaluación',
+        type : 'basic',
+        icon : 'heroicons_outline:chart-pie',
+        link : '/assessment'
+    },
+    {
+        id   : 'follow',
+        title: 'Seguimiento',
+        type : 'basic',
+        icon : 'heroicons_outline:chart-pie',
+        link : '/follow'
+    },
+    {
+        id   : 'publication',
+        title: 'Publicación',
+        type : 'basic',
+        icon : 'heroicons_outline:chart-pie',
+        link : '/publication'
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
