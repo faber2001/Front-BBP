@@ -22,15 +22,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
 ];
 
 @Component({
-    selector     : 'caracterization',
+    selector     : 'follow',
     standalone   : true,
-    templateUrl  : './caracterization.component.html',
-    styleUrl     : './caracterization.component.scss',
+    templateUrl  : './follow.component.html',
+    styleUrl     : './follow.component.scss',
     encapsulation: ViewEncapsulation.None,
     imports: [MatTableModule],
 })
 
-export class CaracterizationComponent
+export class FollowComponent
 {
     displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
     dataSource = ELEMENT_DATA;
