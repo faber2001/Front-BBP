@@ -13,35 +13,35 @@ export const defaultNavigation: FuseNavigationItem[] = [
         id   : 'caracterization',
         title: 'Caracterización',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_outline:newspaper',
         link : '/caracterization'
     },
     {
         id   : 'catalog',
         title: 'Catalogar',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_outline:document-duplicate',
         link : '/catalog'
     },
     {
         id   : 'assessment',
         title: 'Evaluación',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_outline:queue-list',
         link : '/assessment'
     },
     {
         id   : 'follow',
         title: 'Seguimiento',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_outline:presentation-chart-line',
         link : '/follow'
     },
     {
         id   : 'publication',
         title: 'Publicación',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
+        icon : 'heroicons_outline:megaphone',
         link : '/publication'
     }
 ];

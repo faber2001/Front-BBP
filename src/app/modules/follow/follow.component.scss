@@ -19,90 +19,9 @@ body {
 
 h1 {
     font-size: 24px;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-}
-
-.table-container {
-    overflow-x: auto;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.7);
-    border: 1px solid #ccc;
-    background-color: #fff;
-}
-
-.table-container2 {
-    overflow-x: auto;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.7);
-    border: 1px solid #ccc;
-    background-color: #fff;
-    margin-top: 20px;
-}
-
-
-h5{
-    margin-left: 25px;
-    text-decoration: underline;
     margin-bottom: 10px;
+    text-align: center;
     color: #24197A;
-}
-
-table {
-    width: 95%;
-    border-collapse: collapse;
-    margin: 0 auto;
-    background-color: white;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-thead th {
-    background-color: #e0e0e0;
-    text-align: left;
-    padding: 15px;
-    color: #333;
-    font-weight: 600;
-}
-
-tbody td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    color:#24197A
-}
-
-tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.acceptable {
-    color: green;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.not-acceptable {
-    color: red;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-.acceptable-conditions {
-    color: orange;
-    font-weight: bold;
-    text-decoration: none;
-}
-
-table tbody tr:hover {
-    background-color: #f9f9f9;
-}
-
-td{
-    text-decoration: underline;
 }
 
 .fuse-vertical-navigation-item {
