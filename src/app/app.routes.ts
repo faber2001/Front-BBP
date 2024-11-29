@@ -139,5 +139,19 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'publication', loadChildren: () => import('app/modules/publication/publication.routes')},
         ]
+    },
+
+        // Resumen common routes
+    {
+    path: '',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    component: LayoutComponent,
+        resolve: {
+             initialData: initialDataResolver
+        },
+        children: [
+            {path: 'resumen', loadChildren: () => import('app/modules/resumen/resumen.routes')},
+        ]
     }
 ];

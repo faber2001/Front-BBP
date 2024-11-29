@@ -43,6 +43,13 @@ export const defaultNavigation: FuseNavigationItem[] = [
         type : 'basic',
         icon : 'heroicons_outline:megaphone',
         link : '/publication'
+    },
+    {
+        id   : 'resumen',
+        title: 'Resumen',
+        type : 'basic',
+        icon : 'heroicons_outline:clipboard-document-list',
+        link : '/resumen'
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [
