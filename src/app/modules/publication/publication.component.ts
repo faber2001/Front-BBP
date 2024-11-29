@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import {MatTableModule} from  '@angular/material/table' ;
+import {MatTableModule} from  '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 export interface PeriodicElement {
     name: string;
@@ -27,7 +29,12 @@ const ELEMENT_DATA: PeriodicElement[] = [
     templateUrl  : './publication.component.html',
     styleUrl     : './publication.component.scss',
     encapsulation: ViewEncapsulation.None,
-    imports: [MatTableModule],
+    imports: [
+        MatIconModule,
+        MatTableModule,
+        MatIconModule,
+        MatMenuModule
+    ]
 })
 
 export class PublicationComponent
