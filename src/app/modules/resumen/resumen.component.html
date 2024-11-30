@@ -1,13 +1,12 @@
-<div class="min-w-0 flex-1">
+<div class="container">
+    <div class="min-w-0 flex-1">
     <!-- Title -->
     <div class="mt-2">
-        <h2
-            class="truncate text-3xl font-extrabold leading-7 tracking-tight sm:leading-10 md:text-4xl"
-        >
-            Form Wizards
-        </h2>
+        <h1>
+            Hoja de Vida
+        </h1>
     </div>
-    
+
 <!-- Main -->
 <div class="flex-auto p-6 sm:p-10">
 
@@ -19,8 +18,8 @@
             <mat-error *ngIf="horizontalStepperForm.get('newFields.nombrePractica')?.hasError('required')">
                 Este campo es obligatorio
             </mat-error>
-        </mat-form-field>        
-    
+        </mat-form-field>
+
         <!-- Select para Identificación -->
         <mat-form-field appearance="fill" class="filters-field rounded-2xl" style="flex: 1;">
             <mat-label>Identificación</mat-label>
@@ -33,7 +32,7 @@
                 Este campo es obligatorio
             </mat-error>
         </mat-form-field>
-    
+
         <!-- Select para Contenido -->
         <mat-form-field appearance="fill" class="filters-field rounded-2xl" style="flex: 1;">
             <mat-label>Contenido</mat-label>
@@ -47,7 +46,7 @@
             </mat-error>
         </mat-form-field>
     </form>
-    
+
 <div class="max-w-3x">
     <!-- Horizontal stepper -->
     <form
@@ -72,15 +71,15 @@
                             matPrefix
                             [for]="picker2"
                         ></mat-datepicker-toggle>
-                
+
                         <input
                             matInput
                             [matDatepicker]="picker2"
                         />
                         <mat-datepicker #picker2></mat-datepicker>
                     </mat-form-field>
-                </div>                     
-                
+                </div>
+
                 <div class="gt-xs:flex-row flex flex-col">
                     <mat-form-field class="gt-xs:pr-3 flex-auto w-full" appearance="fill">
                         <input
@@ -117,7 +116,7 @@
                         type="button"
                         matStepperNext
                     >
-                        Next
+                        Siguiente
                     </button>
                 </div>
             </mat-step>
@@ -209,7 +208,7 @@
                         type="button"
                         matStepperNext
                     >
-                        Next
+                    Siguiente
                     </button>
                 </div>
             </mat-step>
@@ -251,7 +250,7 @@
                         <mat-label>Código de la práctica</mat-label>
                         <input matInput formControlName="codigoPractica" readonly />
                     </mat-form-field>
-                    
+
                     <mat-form-field class="flex-auto">
                         <mat-label>Tipología</mat-label>
                         <mat-select formControlName="tipologia">
@@ -320,7 +319,7 @@
                         type="button"
                         matStepperNext
                     >
-                        Next
+                    Siguiente
                     </button>
                 </div>
             </mat-step>
@@ -389,7 +388,7 @@
                                 La fecha de fin no puede ser anterior a la fecha de inicio.
                             </mat-error>
                         </mat-form-field>
-                    </div>                                               
+                    </div>
                 </div>
                 <div class="mt-8 flex justify-end">
                     <button
@@ -408,12 +407,12 @@
                         type="button"
                         matStepperNext
                     >
-                        Next
+                    Siguiente
                     </button>
                 </div>
             </mat-step>
 
-            
+
             <mat-step
                 [formGroupName]="'step4'"
                 [stepControl]="horizontalStepperForm.get('step4')"
@@ -519,8 +518,8 @@
                             <mat-label>Descripción de resultados</mat-label>
                             <textarea matInput formControlName="descripcionResultados" rows="5"></textarea>
                         </mat-form-field>
-                        
-                    </div>                                               
+
+                    </div>
                 </div>
                 <div class="mt-8 flex justify-end">
                     <button
@@ -530,7 +529,7 @@
                         type="button"
                         matStepperPrevious
                     >
-                        Back
+                        Atras
                     </button>
                     <button
                         class="px-8"
@@ -539,7 +538,7 @@
                         type="button"
                         matStepperNext
                     >
-                        Next
+                    Siguiente
                     </button>
                 </div>
             </mat-step>
@@ -547,4 +546,5 @@
     </form>
 </div>
 </div>
+    </div>
 </div>

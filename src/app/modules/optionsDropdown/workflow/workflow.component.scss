@@ -17,18 +17,21 @@ body {
     width: 100%;
 }
 
-mat-horizontal-stepper {
-    background-color: transparent !important;
-    box-shadow: none !important;
-}
-
-mat-step {
-    background-color: transparent !important;
-}
-
 h1 {
     font-size: 24px;
     margin-bottom: 10px;
-    margin-left: 40px;
+    text-align: center;
     color: #24197A;
+}
+
+.fuse-vertical-navigation-item {
+    transition: background-color 0.3s ease-in-out !important;
+    color: white !important;
+    border-radius: 15px !important;
+    margin-top: 2px;
+}
+
+.fuse-vertical-navigation-item:hover {
+    background-color: white !important;
+    color: #2D3480 !important;
 }

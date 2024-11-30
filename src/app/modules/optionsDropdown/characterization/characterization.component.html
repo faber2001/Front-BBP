@@ -1,3 +1,35 @@
+<div class="container">
+    <h1>Creación</h1>
+        <h2><b>Creación de criterio</b></h2>
+    <form>
+        <div class="form-group-inline">
+            <div class="form-group">
+                <label for="criterio">Nombre de criterio<span>*</span></label>
+                <input type="text" id="criterio" placeholder="" />
+            </div>
+            <div class="form-group">
+                <label for="peso">Valor numérico de peso / criticidad<span>*</span></label>
+                <select id="peso">
+                    <option value="" disabled selected></option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripción<span>*</span></label>
+            <textarea id="descripcion" placeholder=""></textarea>
+        </div>
+        <div class="button-group">
+            <button type="button" class="btn cancel">CANCELAR</button>
+            <button type="submit" class="btn create">CREAR</button>
+        </div>
+    </form>
+</div>
+
 <button class="floating-button" mat-icon-button [matMenuTriggerFor]="menu">
     <mat-icon svgIcon="heroicons_outline:clipboard-document-list" class="large-icon"></mat-icon>
 </button>
@@ -11,7 +43,7 @@
         <mat-icon class="internos">supervisor_account</mat-icon>
         <span class="internos">Roles y permisos</span>
     </button>
-    <button mat-menu-item [routerLink]="'/options/characterization'">
+    <button mat-menu-item>
         <mat-icon class="internos">settings</mat-icon>
         <span class="internos">Criterios de caracterización</span>
     </button>

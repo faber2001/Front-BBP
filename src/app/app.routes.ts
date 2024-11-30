@@ -3,6 +3,8 @@ import { initialDataResolver } from 'app/app.resolvers';
 import { AuthGuard } from 'app/core/auth/guards/auth.guard';
 import { NoAuthGuard } from 'app/core/auth/guards/noAuth.guard';
 import { LayoutComponent } from 'app/layout/layout.component';
+import { CharacterizationComponent } from 'app/modules/optionsDropdown/characterization/characterization.component';
+
 
 // @formatter:off
 /* eslint-disable max-len */
@@ -153,5 +155,31 @@ export const appRoutes: Route[] = [
         children: [
             {path: 'resumen', loadChildren: () => import('app/modules/resumen/resumen.routes')},
         ]
-    }
+    },
+    {
+        path: '',
+        canActivate: [AuthGuard],
+        canActivateChild: [AuthGuard],
+        component: LayoutComponent,
+            resolve: {
+                 initialData: initialDataResolver
+            },
+            children: [
+                {path: 'optionsDropdown/characterization', loadChildren: () => import('app/modules/optionsDropdown/characterization/characterization.routes')},
+            ]
+        },
+        {
+            path: 'options',
+            canActivate: [AuthGuard],
+            canActivateChild: [AuthGuard],
+            component: LayoutComponent,
+            resolve: {
+                initialData: initialDataResolver
+            },
+            children: [
+                {path: 'characterization', loadChildren: () => import('app/modules/optionsDropdown/characterization/characterization.routes')},
+                // {path: 'characterization', loadChildren: () => import('app/modules/optionsDropdown/characterization/characterization.routes')},
+
+            ]
+        }
 ];
