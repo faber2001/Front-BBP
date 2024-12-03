@@ -3,12 +3,17 @@ import { inject, Injectable } from '@angular/core';
 import { AuthUtils } from 'app/core/auth/auth.utils';
 import { UserService } from 'app/core/user/user.service';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
+import { user as userData } from 'app/mock-api/common/user/data';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
     private _authenticated: boolean = false;
     private _httpClient = inject(HttpClient);
     private _userService = inject(UserService);
+
+    private _user: any = userData;
+
 
     // -----------------------------------------------------------------------------------------------------
     // @ Accessors
@@ -52,22 +57,30 @@ export class AuthService {
      *
      * @param credentials
      */
-    signIn(credentials: { email: string; password: string }): Observable<any> {
+    signIn(credentials: { sAMAccountName: string; password: string }): Observable<any> {
         // Throw error, if the user is already logged in
         if (this._authenticated) {
             return throwError('User is already logged in.');
+
         }
 
-        return this._httpClient.post('api/auth/sign-in', credentials).pipe(
+        const auth = {
+            sAMAccountName: credentials.sAMAccountName,
+            password: credentials.password,
+        };
+
+        return this._httpClient.post('http://192.168.2.11:5500/api/v1/auth/loginActiveDirectory', auth).pipe(
             switchMap((response: any) => {
+                console.log(response);
+
                 // Store the access token in the local storage
-                this.accessToken = response.accessToken;
+                this.accessToken = response.user.token;
 
                 // Set the authenticated flag to true
                 this._authenticated = true;
 
                 // Store the user on the user service
-                this._userService.user = response.user;
+                this._userService.user = this._user;
 
                 // Return a new observable with the response
                 return of(response);

@@ -49,10 +49,7 @@
 
 <div class="max-w-3x">
     <!-- Horizontal stepper -->
-    <form
-        class="bg-transparent overflow-hidden rounded p-4"
-        [formGroup]="horizontalStepperForm"
-    >
+    <form class="bg-transparent overflow-hidden rounded p-4" [formGroup]="horizontalStepperForm">
         <mat-horizontal-stepper [linear]="true" #horizontalStepper>
             <mat-step
                 [formGroupName]="'step1'"
@@ -63,21 +60,11 @@
                     >Fecha de diligenciamiento</ng-template
                 >
                 <div class="flex">
-                    <mat-form-field
-                        class="flex-auto"
-                        appearance="fill"
-                    >
-                        <mat-datepicker-toggle
-                            matPrefix
-                            [for]="picker2"
-                        ></mat-datepicker-toggle>
-
-                        <input
-                            matInput
-                            [matDatepicker]="picker2"
-                        />
-                        <mat-datepicker #picker2></mat-datepicker>
-                    </mat-form-field>
+                    <mat-form-field class="flex-auto" appearance="fill">
+                        <input matInput [matDatepicker]="picker1" formControlName="fechaDiligenciamiento" placeholder="Fecha de Diligenciamiento"/>
+                        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                        <mat-datepicker #picker1></mat-datepicker>
+                      </mat-form-field>
                 </div>
 
                 <div class="gt-xs:flex-row flex flex-col">
