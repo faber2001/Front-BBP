@@ -1,10 +1,11 @@
-<div class="container">
-    <div class="min-w-0 flex-1">
+<div class="min-w-0 flex-1">
     <!-- Title -->
     <div class="mt-2">
-        <h1>
+        <h2
+            class="truncate text-3xl font-extrabold leading-7 tracking-tight sm:leading-10 md:text-4xl"
+        >
             Hoja de Vida
-        </h1>
+        </h2>
     </div>
 
 <!-- Main -->
@@ -49,7 +50,10 @@
 
 <div class="max-w-3x">
     <!-- Horizontal stepper -->
-    <form class="bg-transparent overflow-hidden rounded p-4" [formGroup]="horizontalStepperForm">
+    <form
+        class="bg-transparent overflow-hidden rounded p-4"
+        [formGroup]="horizontalStepperForm"
+    >
         <mat-horizontal-stepper [linear]="true" #horizontalStepper>
             <mat-step
                 [formGroupName]="'step1'"
@@ -61,10 +65,18 @@
                 >
                 <div class="flex">
                     <mat-form-field class="flex-auto" appearance="fill">
-                        <input matInput [matDatepicker]="picker1" formControlName="fechaDiligenciamiento" placeholder="Fecha de Diligenciamiento"/>
+                        <input
+                            matInput
+                            [matDatepicker]="picker1"
+                            formControlName="fechaDiligenciamiento"
+                            (dateChange)="onDateChange($event, 'step1', 'fechaDiligenciamiento')"
+
+                            placeholder="Fecha de Diligenciamiento"
+                        />
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                         <mat-datepicker #picker1></mat-datepicker>
-                      </mat-form-field>
+                    </mat-form-field>
+
                 </div>
 
                 <div class="gt-xs:flex-row flex flex-col">
@@ -85,7 +97,7 @@
                         <input
                             matInput
                             placeholder="Nombre de la dependencia"
-                            formControlName="nombreDependencia"
+                            formControlName="nombreDependenciaArea"
                             type="text"
                         />
                         <mat-icon
@@ -103,7 +115,7 @@
                         type="button"
                         matStepperNext
                     >
-                        Siguiente
+                        Next
                     </button>
                 </div>
             </mat-step>
@@ -151,7 +163,7 @@
                     <mat-form-field class="flex-auto w-full" appearance="fill">
                         <input
                             matInput
-                            [formControlName]="'correoElectronico'"
+                            [formControlName]="'correo'"
                             placeholder="Correo electrónico"
                             type="email"
                         />
@@ -195,7 +207,7 @@
                         type="button"
                         matStepperNext
                     >
-                    Siguiente
+                        Next
                     </button>
                 </div>
             </mat-step>
@@ -212,7 +224,7 @@
                     <div class="flex flex-col">
                         <mat-form-field class="flex-auto">
                             <mat-label>Tipo de estrategia de identificación</mat-label>
-                            <mat-select formControlName="tipoEstrategia">
+                            <mat-select formControlName="tipoEstrategiaIdentificacion">
                                 <mat-option value="interna">Identificación interna</mat-option>
                                 <mat-option value="indagacion">Identificación por indagación</mat-option>
                                 <mat-option value="asesoria">Identificación por asesoría</mat-option>
@@ -256,6 +268,17 @@
                         </mat-select>
                     </mat-form-field>
                     <mat-form-field class="flex-auto">
+                        <mat-label>Estado Flujo</mat-label>
+                        <mat-select formControlName="estadoFlujo">
+                            <mat-option value="Candidata">Buena Practica Candidata</mat-option>
+                            <mat-option value="validación">“Buena práctica en validación</mat-option>
+                            <mat-option value="Caracterización">Buena práctica en caracterización</mat-option>
+                            <mat-option value="Evaluación">Buena Práctica en Evaluación</mat-option>
+                            <mat-option value="Establecida">Buena práctica establecida</mat-option>
+                            <mat-option value="Descartada">Buena práctica Descartada</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <mat-form-field class="flex-auto">
                         <mat-label>Nivel de la buena práctica</mat-label>
                         <mat-select formControlName="nivelBuenaPractica">
                             <mat-option value="nivel1">Primer nivel (aprendizaje y ejemplos)</mat-option>
@@ -264,7 +287,7 @@
                     </mat-form-field>
                     <mat-form-field class="flex-auto">
                         <mat-label>Nombre descriptivo de la buena práctica</mat-label>
-                        <input matInput formControlName="nombrePractica" maxlength="100" />
+                        <input matInput formControlName="nombreDescriptivoBuenaPractica" maxlength="100" />
                     </mat-form-field>
                     <mat-form-field class="flex-auto">
                         <mat-label>Propósito de la práctica</mat-label>
@@ -277,7 +300,7 @@
                     </mat-form-field>
                     <mat-form-field class="flex-auto">
                         <mat-label>Objetivo principal de la práctica</mat-label>
-                        <mat-select formControlName="objetivoPrincipal">
+                        <mat-select formControlName="objetivoPrincipalPractica">
                             <mat-option value="mejorar_eficiencia">Mejorar eficiencia operativa</mat-option>
                             <mat-option value="incrementar_satisfaccion">Incrementar satisfacción del cliente</mat-option>
                             <mat-option value="optimizar_recursos">Optimizar el uso de recursos</mat-option>
@@ -306,7 +329,7 @@
                         type="button"
                         matStepperNext
                     >
-                    Siguiente
+                        Next
                     </button>
                 </div>
             </mat-step>
@@ -359,22 +382,21 @@
                             <mat-option value="monitoreo_seguimiento">Monitoreo y seguimiento</mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <div formGroupName="periodoDesarrollo" class="flex flex-col gap-4">
+                    <div class="flex flex-col gap-4">
                         <mat-form-field class="flex-auto">
                             <mat-label>Inicio</mat-label>
-                            <input matInput [matDatepicker]="inicioPicker" formControlName="inicio">
+                            <input matInput [matDatepicker]="inicioPicker" formControlName="periodoDesarrolloInicio" (dateChange)="onDateChange($event, 'step4', 'periodoDesarrolloInicio')"/>
                             <mat-datepicker-toggle matSuffix [for]="inicioPicker"></mat-datepicker-toggle>
                             <mat-datepicker #inicioPicker></mat-datepicker>
                         </mat-form-field>
+
                         <mat-form-field class="flex-auto">
                             <mat-label>Fin</mat-label>
-                            <input matInput [matDatepicker]="finPicker" formControlName="fin">
+                            <input matInput [matDatepicker]="finPicker" formControlName="periodoDesarrolloFin" (dateChange)="onDateChange($event, 'step4', 'periodoDesarrolloFin')"/>
                             <mat-datepicker-toggle matSuffix [for]="finPicker"></mat-datepicker-toggle>
                             <mat-datepicker #finPicker></mat-datepicker>
-                            <mat-error *ngIf="horizontalStepperForm.get('step4.periodoDesarrollo.fin').hasError('invalidDate')">
-                                La fecha de fin no puede ser anterior a la fecha de inicio.
-                            </mat-error>
                         </mat-form-field>
+
                     </div>
                 </div>
                 <div class="mt-8 flex justify-end">
@@ -394,14 +416,14 @@
                         type="button"
                         matStepperNext
                     >
-                    Siguiente
+                        Next
                     </button>
                 </div>
             </mat-step>
 
 
             <mat-step
-                [formGroupName]="'step4'"
+                [formGroupName]="'step5'"
                 [stepControl]="horizontalStepperForm.get('step4')"
             >
                 <ng-template matStepLabel>Gestión</ng-template>
@@ -437,7 +459,7 @@
                     </mat-form-field>
                     <mat-form-field class="flex-auto">
                         <mat-label>Reconocimientos nacionales o internacionales</mat-label>
-                        <mat-select formControlName="reconocimientos">
+                        <mat-select formControlName="reconocimientosNacionalesInternacionales">
                             <mat-option value="no">No</mat-option>
                             <mat-option value="si">Sí</mat-option>
                             <mat-option value="no_aplica">No aplica</mat-option>
@@ -459,7 +481,6 @@
                             <mat-option value="gestion_interinstitucional">Gestión Interinstitucional y Alianzas</mat-option>
                         </mat-select>
                     </mat-form-field>
-                    <div formGroupName="periodoDesarrollo" class="flex flex-col gap-4">
                         <mat-form-field class="flex-auto">
                             <mat-label>Taxonomía del Evento</mat-label>
                             <mat-select formControlName="taxonomiaEvento" multiple>
@@ -505,27 +526,29 @@
                             <mat-label>Descripción de resultados</mat-label>
                             <textarea matInput formControlName="descripcionResultados" rows="5"></textarea>
                         </mat-form-field>
-
-                    </div>
+                        <div class="file-upload">
+                            <button
+                              type="button"
+                              (click)="triggerFileInput()"
+                            >
+                              Subir Archivo
+                            </button>
+                            <input
+                              id="fileInput"
+                              type="file"
+                              (change)="onFileSelected($event)"
+                              hidden
+                            />
+                            <span *ngIf="selectedFile">{{ selectedFile.name }}</span>
+                        </div>
                 </div>
                 <div class="mt-8 flex justify-end">
                     <button
-                        class="mr-2 px-8"
-                        mat-flat-button
-                        [color]="'accent'"
                         type="button"
-                        matStepperPrevious
-                    >
-                        Atras
-                    </button>
-                    <button
-                        class="px-8"
-                        mat-flat-button
-                        [color]="'primary'"
-                        type="button"
-                        matStepperNext
-                    >
-                    Siguiente
+                        mat-raised-button
+                        color="primary"
+                        (click)="submitForm()">
+                        Enviar Formulario
                     </button>
                 </div>
             </mat-step>
@@ -533,5 +556,4 @@
     </form>
 </div>
 </div>
-    </div>
 </div>

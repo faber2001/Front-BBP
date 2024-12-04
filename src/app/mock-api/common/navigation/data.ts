@@ -3,11 +3,11 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 
 export const defaultNavigation: FuseNavigationItem[] = [
     {
-        id   : 'example',
-        title: 'Panel',
+        id   : 'resumen',
+        title: 'Registro',
         type : 'basic',
-        icon : 'heroicons_outline:chart-pie',
-        link : '/example'
+        icon : 'heroicons_outline:clipboard-document-list',
+        link : '/resumen'
     },
     {
         id   : 'caracterization',
@@ -45,11 +45,18 @@ export const defaultNavigation: FuseNavigationItem[] = [
         link : '/publication'
     },
     {
-        id   : 'resumen',
-        title: 'Resumen',
+        id   : 'example',
+        title: 'Panel',
         type : 'basic',
-        icon : 'heroicons_outline:clipboard-document-list',
-        link : '/resumen'
+        icon : 'heroicons_outline:chart-pie',
+        link : '/example'
+    },
+    {
+        id   : 'inbox',
+        title: 'Inbox',
+        type : 'basic',
+        icon : 'heroicons_outline:inbox',
+        link : '/inbox'
     }
 ];
 export const compactNavigation: FuseNavigationItem[] = [

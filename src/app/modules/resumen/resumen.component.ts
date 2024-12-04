@@ -5,6 +5,8 @@ import {
     UntypedFormBuilder,
     UntypedFormGroup,
     Validators,
+    FormBuilder,
+    FormGroup
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -17,6 +19,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ResumenService } from './resumen.service'; // Asegúrate de que la ruta es correcta
+import Swal from 'sweetalert2';
+
 
 @Component({
     selector: 'resumen',
@@ -37,33 +42,107 @@ import { MatNativeDateModule } from '@angular/material/core';
         MatCheckboxModule,
         MatRadioModule,
         MatDatepickerModule,
-        MatNativeDateModule
+        MatNativeDateModule,
     ],
     providers: [MatDatepickerModule],
 })
 export class ResumenComponent implements OnInit {
     horizontalStepperForm: UntypedFormGroup;
+    selectedFile: File | null = null;
 
-    constructor(private _formBuilder: UntypedFormBuilder) {}
+    constructor(private _formBuilder: UntypedFormBuilder,
+        private resumenService: ResumenService) {}
+
+    triggerFileInput(): void {
+        const fileInput = document.querySelector<HTMLInputElement>('#fileInput');
+        fileInput?.click();
+      }
+
+      onFileSelected(event: Event): void {
+      const input = event.target as HTMLInputElement;
+      if (input?.files?.length) {
+        this.selectedFile = input.files[0];
+        console.log('Archivo seleccionado:', this.selectedFile);
+      }
+    }
+
+    submitForm(): void {
+        if (this.horizontalStepperForm.valid) {
+          // Definir los campos multiseleccionables
+          const multiSelectFields = [
+            'apoyoRecibido',
+            'etapasMetodologia',
+            'impactoEsperado',
+            'taxonomiaEvento',
+            'tipoMaterialProducido',
+          ];
+
+          // Obtener los valores del formulario
+          const formValues = this.horizontalStepperForm.getRawValue();
+
+          // Transformar los campos multiseleccionables en cadenas separadas por comas
+          multiSelectFields.forEach((field) => {
+            Object.keys(formValues).forEach((step) => {
+              if (
+                formValues[step] &&
+                formValues[step][field] &&
+                Array.isArray(formValues[step][field])
+              ) {
+                formValues[step][field] = formValues[step][field].join(',');
+              }
+            });
+          });
+
+          // Aplana el objeto si es necesario y envía los datos
+          const flattenedValues = this.flattenObject(formValues);
+
+          this.resumenService.sendFormDataAsJson(flattenedValues).subscribe(
+            (response) => {
+              // Mostrar alerta de éxito usando SweetAlert2
+              Swal.fire({
+                title: '¡Formulario Enviado!',
+                text: 'Tu formulario ha sido enviado con éxito.',
+                icon: 'success',
+                confirmButtonText: 'Aceptar',
+              }).then(() => {
+                // Redirigir a otra página o vista después de un segundo
+                window.location.href = './example';
+              });
+            },
+            (error) => {
+              // Mostrar alerta de error usando SweetAlert2
+              Swal.fire({
+                title: 'Error',
+                text: 'Hubo un problema al enviar el formulario. Intenta nuevamente.',
+                icon: 'error',
+                confirmButtonText: 'Aceptar',
+              });
+            }
+          );
+
+
+        } else {
+          console.warn('Formulario no válido');
+        }
+    }
 
     ngOnInit(): void {
         this.horizontalStepperForm = this._formBuilder.group({
             step1: this._formBuilder.group({
-                fecha: [''],
-                country: [''],
-                language: [''],
+                fechaDiligenciamiento: [''],
+                nombreEntidad: [''],
+                nombreDependenciaArea: [''],
             }),
             step2: this._formBuilder.group({
                 nombre: ['', [Validators.maxLength(50)]],
                 cargo: ['', [Validators.maxLength(50)]],
-                correoElectronico: [
+                correo: [
                     '',
                     [Validators.email],
                 ],
                 contacto: [
                     '',
                     [
-
                         Validators.pattern('^[0-9]{10}$'),
                     ],
                 ],
@@ -73,43 +152,28 @@ export class ResumenComponent implements OnInit {
                 tipoPractica: [''],
                 codigoPractica: [{ value: '', disabled: true }],
                 tipologia: [{ value: ''}],
-                estadoFlujo: [{ value: 'Buena Practica Candidata', disabled: true }],
+                estadoFlujo: [{ value: '' }],
                 nivelBuenaPractica: [''],
-                nombreDescriptivo: ['', Validators.maxLength(100)],
+                nombreDescriptivoBuenaPractica: ['', Validators.maxLength(100)],
                 propositoPractica: ['', Validators.maxLength(300)],
-                objetivoPrincipal: [''],
-                pushNotifications: ['everything', Validators.required],
-            }),
-            newFields: this._formBuilder.group({
-                nombrePractica: [''],
-                identificacion: [''],
-                contenido: [''],
+                objetivoPrincipalPractica: [''],
             }),
             step4: this._formBuilder.group({
-                byEmail: this._formBuilder.group({
-                    companyNews: [false],
-                    featuredProducts: [false],
-                    messages: [false],
-                }),
-                pushNotifications: ['everything'],
-                impactoEsperado: this._formBuilder.array([]),
+                impactoEsperado: [''],
                 metodologiaUsada: ['', [Validators.maxLength(500)]],
                 duracionImplementacion: [''],
-                etapasMetodologia: this._formBuilder.array([]),
-                periodoDesarrollo: this._formBuilder.group({
-                    inicio: [''],
-                    fin: [''],
-                }),
+                etapasMetodologia: [''],
+                periodoDesarrolloInicio: [''],
+                periodoDesarrolloFin: [''],
             }),
             step5: this._formBuilder.group({
-                tipoMaterialProducido: this._formBuilder.array([], Validators.required),
-                apoyoRecibido: this._formBuilder.array([], Validators.required),
-                reconocimientos: ['', Validators.required],
-                objetoControl: ['', Validators.required],
-                taxonomiaEvento: this._formBuilder.array([], Validators.required),
-                tipoActuacion: ['', Validators.required],
-                documentoActuacion: ['', [Validators.pattern(/(\.pdf|\.docx|\.xlsx|\.pptx|\.zip)$/)]], // Carga de documentos
-                descripcionResultados: ['', Validators.required],
+                tipoMaterialProducido: [''],
+                apoyoRecibido: [''],
+                reconocimientosNacionalesInternacionales: [''],
+                objetoControl: [''],
+                taxonomiaEvento: [''],
+                tipoActuacion: [''],
+                descripcionResultados: [''],
             }),
         });
     }
@@ -130,4 +194,40 @@ export class ResumenComponent implements OnInit {
         const random = Math.floor(1000 + Math.random() * 9000);
         return random.toString();
     }
+    onDateChange(event: any, stepName: string, controlName: string): void {
+        const date = event.value;
+        const formattedDate = this.formatDate(date);
+        this.horizontalStepperForm.get(`${stepName}.${controlName}`)?.setValue(formattedDate);
+    }
+
+    formatDate(date: Date): string {
+        const year = date.getFullYear();
+        const month = ('0' + (date.getMonth() + 1)).slice(-2);
+        const day = ('0' + date.getDate()).slice(-2);
+        return `${year}-${month}-${day}`;
+    }
+
+    flattenObject(obj: any): any {
+        let result: any = {};
+
+        for (const key in obj) {
+          if (obj.hasOwnProperty(key)) {
+            if (typeof obj[key] === 'object' && obj[key] !== null) {
+              const temp = this.flattenObject(obj[key]);
+              for (const subKey in temp) {
+                if (temp.hasOwnProperty(subKey)) {
+                  if (subKey.startsWith('step')) {
+                    result[subKey.substring(subKey.indexOf('.') + 1)] = temp[subKey];
+                  } else {
+                    result[subKey] = temp[subKey];
+                  }
+                }
+              }
+            } else {
+              result[key] = obj[key];
+            }
+          }
+        }
+        return result;
+      }
 }
